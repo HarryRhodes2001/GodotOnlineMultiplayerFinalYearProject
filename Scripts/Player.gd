@@ -7,6 +7,9 @@ const SENSITIVITY = 0.003
 
 @onready var head = $Head
 @onready var camera = $Head/Camera3D
+@onready var player = $AnimationPlayer
+@onready var flash = $Head/Camera3D/assault_rifle/Flash
+@onready var raycast = $Head/Camera3D/RayCast3D
 
 func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
@@ -16,6 +19,14 @@ func _unhandled_input(event):
 		head.rotate_y(-event.relative.x * SENSITIVITY)
 		camera.rotate_x(-event.relative.y * SENSITIVITY)
 		camera.rotation.x = clamp(camera.rotation.x, deg_to_rad(-40), deg_to_rad(60))
+	
+	# If the player presses the left mouse button, fire the weapon
+	# The current animation check is to prevent the animation overlaping and give a firing cooldown
+	if Input.is_action_just_pressed("fire") and player.current_animation != "Firing":
+		firing_effects()
+		if raycast.is_colliding():
+			var hit = raycast.get_collision_point()
+			print (hit)
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -37,4 +48,19 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
+	# This if statement checks to see if the player is moving on the floor and is receiving input.
+	# If so, we play the moving animation. Else he is idle.
+	if player.current_animation == "Firing":
+		pass
+	elif input_dir != Vector2.ZERO and is_on_floor():
+		player.play("Moving")
+	else:
+		player.play("Idle")
+
 	move_and_slide()
+
+func firing_effects():
+	player.stop()
+	player.play("Firing")
+	flash.restart()
+	flash.emitting = true

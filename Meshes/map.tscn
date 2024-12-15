@@ -1,4 +1,4 @@
-[gd_scene load_steps=4 format=3 uid="uid://b6f65ooxn5rv1"]
+[gd_scene load_steps=5 format=3 uid="uid://b6f65ooxn5rv1"]
 
 [ext_resource type="PackedScene" uid="uid://ii6ty2kjq075" path="res://Assets/map.blend" id="1_im7ef"]
 
@@ -9,11 +9,38 @@ uv1_triplanar = true
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_eecbn"]
 albedo_color = Color(0.639216, 1, 1, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4l1y1"]
+albedo_color = Color(0.843137, 0.72549, 0.494118, 1)
+
 [node name="map" instance=ExtResource("1_im7ef")]
 
 [node name="Plane" parent="." index="0"]
 surface_material_override/0 = SubResource("StandardMaterial3D_21eby")
 surface_material_override/1 = SubResource("StandardMaterial3D_eecbn")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Plane" index="1"]
+transform = Transform3D(0.997916, 0.0645323, 0, -0.0645323, 0.997916, 0, 0, 0, 1, -1.42914, 0.0994049, -0.00103592)
+use_collision = true
+size = Vector3(0.265167, 0.0181885, 3.13141)
+material = SubResource("StandardMaterial3D_4l1y1")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Plane" index="2"]
+transform = Transform3D(-0.997916, -0.0645323, -8.74228e-08, -0.0645323, 0.997916, 0, 8.72406e-08, 5.6416e-09, -1, 1.429, 0.099, -0.001)
+use_collision = true
+size = Vector3(0.265167, 0.0181885, 3.13141)
+material = SubResource("StandardMaterial3D_4l1y1")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Plane" index="3"]
+transform = Transform3D(-4.36203e-08, -2.8208e-09, 1, -0.0645323, 0.997916, 0, -0.997916, -0.0645323, -4.37114e-08, 0.004, 0.099, 1.429)
+use_collision = true
+size = Vector3(0.265167, 0.0181885, 3.13141)
+material = SubResource("StandardMaterial3D_4l1y1")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Plane" index="4"]
+transform = Transform3D(1.19e-08, 7.6954e-10, -1, -0.0645323, 0.997916, 0, 0.997916, 0.0645323, 1.19249e-08, 0.004, 0.099, -1.429)
+use_collision = true
+size = Vector3(0.265167, 0.0181885, 3.13141)
+material = SubResource("StandardMaterial3D_4l1y1")
 
 [node name="Cube_008" parent="." index="1"]
 visible = false
