@@ -1,6 +1,7 @@
-[gd_scene load_steps=17 format=3 uid="uid://1sl60acptbbb"]
+[gd_scene load_steps=18 format=3 uid="uid://1sl60acptbbb"]
 
 [ext_resource type="Script" path="res://Scripts/Player.gd" id="1_sjdpt"]
+[ext_resource type="PackedScene" uid="uid://ct1q2dd6pe7st" path="res://Scenes/gui.tscn" id="2_moqhu"]
 [ext_resource type="PackedScene" uid="uid://cwp7e6qtg4d0t" path="res://Assets/assault_rifle.blend" id="2_roeun"]
 [ext_resource type="Texture2D" uid="uid://d3v25t7p1p7ia" path="res://addons/kenney_particle_pack/star_06.png" id="3_qpsod"]
 [ext_resource type="Texture2D" uid="uid://rlhx1oqhugxb" path="res://addons/kenney_particle_pack/circle_05.png" id="4_c8d38"]
@@ -151,6 +152,8 @@ _data = {
 [node name="CharacterBody3D" type="CharacterBody3D"]
 script = ExtResource("1_sjdpt")
 
+[node name="GUI" parent="." instance=ExtResource("2_moqhu")]
+
 [node name="MeshInstance3D" type="MeshInstance3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
 mesh = SubResource("CapsuleMesh_36112")
@@ -178,9 +181,15 @@ process_material = SubResource("ParticleProcessMaterial_llxlb")
 draw_pass_1 = SubResource("PlaneMesh_qwk4o")
 
 [node name="TextureRect" type="TextureRect" parent="Head/Camera3D"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -576.0
+offset_top = -324.0
+offset_right = -64.0
+offset_bottom = 188.0
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(0.03, 0.03)
