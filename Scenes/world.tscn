@@ -1,6 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://cdsrbu2iw8q40"]
+[gd_scene load_steps=8 format=3 uid="uid://cdsrbu2iw8q40"]
 
 [ext_resource type="PackedScene" uid="uid://b6f65ooxn5rv1" path="res://Meshes/map.tscn" id="1_5frdm"]
+[ext_resource type="Script" path="res://Scripts/game_manager.gd" id="1_cw6t4"]
+[ext_resource type="PackedScene" uid="uid://ct1q2dd6pe7st" path="res://Scenes/gui.tscn" id="1_kr4it"]
 [ext_resource type="PackedScene" uid="uid://1sl60acptbbb" path="res://Meshes/player.tscn" id="2_c3yix"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jblrn"]
@@ -17,6 +19,9 @@ tonemap_mode = 2
 glow_enabled = true
 
 [node name="World" type="Node"]
+script = ExtResource("1_cw6t4")
+
+[node name="GUI" parent="." instance=ExtResource("1_kr4it")]
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
 transform = Transform3D(-0.866023, -0.433016, 0.250001, 0, 0.499998, 0.866027, -0.500003, 0.749999, -0.43301, 0, 0, 0)

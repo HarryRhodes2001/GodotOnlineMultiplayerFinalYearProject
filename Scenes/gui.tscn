@@ -1,7 +1,49 @@
-[gd_scene load_steps=2 format=3 uid="uid://ct1q2dd6pe7st"]
+[gd_scene load_steps=5 format=3 uid="uid://ct1q2dd6pe7st"]
 
 [ext_resource type="PackedScene" uid="uid://bisurut5s6ici" path="res://Scenes/pause_menu.tscn" id="1_2tc83"]
+[ext_resource type="Script" path="res://Scripts/gui.gd" id="1_vwqhg"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bin2l"]
+bg_color = Color(0.808161, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_udw3s"]
+bg_color = Color(0, 0.657962, 3.85046e-07, 1)
 
 [node name="GUI" type="CanvasLayer"]
+script = ExtResource("1_vwqhg")
 
 [node name="Pause Menu" parent="." instance=ExtResource("1_2tc83")]
+
+[node name="Health" type="ProgressBar" parent="."]
+light_mask = 2
+visibility_layer = 2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 9.0
+offset_top = 600.0
+offset_right = -831.0
+offset_bottom = -8.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_bin2l")
+theme_override_styles/fill = SubResource("StyleBoxFlat_udw3s")
+value = 100.0
+show_percentage = false
+
+[node name="AmmoLabel" type="RichTextLabel" parent="."]
+light_mask = 2
+visibility_layer = 2
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -120.0
+offset_top = -49.0
+offset_right = -21.0
+offset_bottom = -6.0
+grow_horizontal = 0
+grow_vertical = 0
+bbcode_enabled = true
+text = "[font_size=30]20/20"
