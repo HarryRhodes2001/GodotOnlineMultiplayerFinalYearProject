@@ -33,4 +33,14 @@ environment = SubResource("Environment_1k8q6")
 [node name="map" parent="." instance=ExtResource("1_5frdm")]
 
 [node name="CharacterBody3D" parent="." instance=ExtResource("2_c3yix")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75379, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75379, 35.5979)
+
+[node name="Window" type="Window" parent="."]
+auto_translate_mode = 1
+initial_position = 1
+size = Vector2i(1152, 648)
+
+[node name="GUI" parent="Window" instance=ExtResource("1_kr4it")]
+
+[node name="CharacterBody3D2" parent="Window" instance=ExtResource("2_c3yix")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75379, -35.4791)
