@@ -1,0 +1,87 @@
+[gd_scene load_steps=2 format=3 uid="uid://crrroystwuob4"]
+
+[ext_resource type="Script" path="res://Scripts/tab_menu.gd" id="1_tj5ki"]
+
+[node name="Tab Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tj5ki")
+
+[node name="BackgroundOverlay" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 288.0
+offset_top = 162.0
+offset_right = -288.0
+offset_bottom = -162.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.922511, 0.772686, 0.725101, 0.282353)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -288.0
+offset_top = -162.0
+offset_right = 288.0
+offset_bottom = 162.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Tab_Menu" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Tab Menu"
+horizontal_alignment = 1
+
+[node name="ControlLabel" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="GridContainer" type="GridContainer" parent="VBoxContainer"]
+layout_mode = 2
+columns = 3
+
+[node name="Player_Name" type="Label" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "                     Player Name                       "
+
+[node name="Kills" type="Label" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Kills          "
+
+[node name="Deaths" type="Label" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "Deaths          "
+
+[node name="PlayerName1" type="Label" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "                     Player"
+
+[node name="PlayerKills1" type="Label" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="PlayerDeaths1" type="Label" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="PlayerName2" type="Label" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "                     Player2"
+
+[node name="PlayerKills2" type="Label" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "0"
+
+[node name="PlayerDeaths2" type="Label" parent="VBoxContainer/GridContainer"]
+layout_mode = 2
+text = "0"

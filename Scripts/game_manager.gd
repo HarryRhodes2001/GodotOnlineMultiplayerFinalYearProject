@@ -21,8 +21,12 @@ func _ready() -> void:
 	
 	Player.health_changed.connect(update_health)
 	Player.ammo_changed.connect(update_ammo)
+	Player.killed_player.connect(update_kills)
+	Player.died.connect(update_deaths)
 	Player2.health_changed.connect(update_health2)
 	Player2.ammo_changed.connect(update_ammo2)
+	Player2.killed_player.connect(update_kills)
+	Player2.died.connect(update_deaths)
 
 func select_window(window_index: int):
 	# Set mouse mode based on the selected window
@@ -46,3 +50,11 @@ func update_ammo(ammo):
 
 func update_ammo2(ammo):
 	GUI2.ammoUpdate(ammo)
+
+func update_kills(authority, kills):
+	GUI.killsUpdate(authority, kills)
+	GUI2.killsUpdate(authority, kills)
+
+func update_deaths(authority, deaths):
+	GUI.deathsUpdate(authority, deaths)
+	GUI2.deathsUpdate(authority, deaths)

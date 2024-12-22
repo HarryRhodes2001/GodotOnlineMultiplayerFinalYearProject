@@ -2,6 +2,8 @@ extends CharacterBody3D
 
 signal health_changed(health)
 signal ammo_changed(ammunition)
+signal killed_player(authority, kills)
+signal died(authority, deaths)
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
@@ -17,6 +19,8 @@ const SENSITIVITY = 0.003
 var health = 100
 var ammunition = 20
 const ammunitionLimit = 20
+var kills = 0
+var deaths = 0
 var authority = 0
 
 func _enter_tree():
@@ -50,7 +54,9 @@ func _unhandled_input(event):
 		if raycast.is_colliding():
 			var hit = raycast.get_collider()
 			if hit != null and hit.has_method("damage_received"):
-				hit.damage_received()
+				if hit.damage_received():
+					kills += 1
+					killed_player.emit(authority, kills)
 	
 	# If the player presses the R key, then reload the weapon
 	if Input.is_action_just_pressed("reload") and player.current_animation != "Reload" and ammunition < ammunitionLimit:
@@ -95,9 +101,21 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-func damage_received():
+func damage_received() -> bool:
 	health -= 10
 	health_changed.emit(health)
+	if health <= 0:
+		deaths += 1
+		health = 100
+		if authority == 1:
+			global_position = Vector3(0, 2.754, 35.598)
+		elif authority == 2:
+			global_position = Vector3(0, 2.754, -35.47)
+		health_changed.emit(health)
+		died.emit(authority, deaths)
+		return true
+	else:
+		return false
 
 func firing_effects():
 	player.stop()
