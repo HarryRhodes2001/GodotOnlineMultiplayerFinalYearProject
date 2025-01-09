@@ -38,7 +38,7 @@ offset_top = -31.0
 offset_right = 146.0
 offset_bottom = -5.0
 grow_vertical = 0
-text = "Release 1"
+text = "Release V1.1"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -55,13 +55,24 @@ grow_horizontal = 2
 grow_vertical = 0
 scale = Vector2(1.53866, 1.36)
 
-[node name="Play" type="Button" parent="VBoxContainer"]
+[node name="Client-Server" type="Button" parent="VBoxContainer"]
 layout_mode = 2
-text = "Play"
+text = "Host Client-Server Game"
+
+[node name="Peer-to-Peer" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+disabled = true
+text = "Host Peer-to-Peer Game"
+
+[node name="Join Game" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Join Game"
 
 [node name="Quit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Quit"
 
-[connection signal="pressed" from="VBoxContainer/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="VBoxContainer/Client-Server" to="." method="_on_client_server_pressed"]
+[connection signal="pressed" from="VBoxContainer/Peer-to-Peer" to="." method="_on_peerto_peer_pressed"]
+[connection signal="pressed" from="VBoxContainer/Join Game" to="." method="_on_join_game_pressed"]
 [connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]
