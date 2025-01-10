@@ -1,6 +1,6 @@
 [gd_scene load_steps=18 format=3 uid="uid://1sl60acptbbb"]
 
-[ext_resource type="Script" path="res://Scripts/Player.gd" id="1_sjdpt"]
+[ext_resource type="Script" uid="uid://q3s6k4qcub8m" path="res://Scripts/Player.gd" id="1_sjdpt"]
 [ext_resource type="PackedScene" uid="uid://cwp7e6qtg4d0t" path="res://Assets/assault_rifle.blend" id="2_roeun"]
 [ext_resource type="Texture2D" uid="uid://d3v25t7p1p7ia" path="res://addons/kenney_particle_pack/star_06.png" id="3_qpsod"]
 [ext_resource type="Texture2D" uid="uid://rlhx1oqhugxb" path="res://addons/kenney_particle_pack/circle_05.png" id="4_c8d38"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://y1q4tb4y1f64"]
 
-[ext_resource type="Script" path="res://Scripts/server_menu.gd" id="1_qjr6u"]
+[ext_resource type="Script" uid="uid://c8yy2i7e3giiw" path="res://Scripts/server_menu.gd" id="1_qjr6u"]
 
 [node name="Server Menu" type="Control"]
 layout_mode = 3
@@ -52,6 +52,7 @@ theme_override_font_sizes/font_size = 40
 text = "  Server 1"
 
 [node name="Server1Count" type="Label" parent="Tree/MenuBar1"]
+layout_mode = 0
 offset_left = 438.0
 offset_top = 2.0
 offset_right = 512.0
@@ -68,6 +69,7 @@ offset_bottom = 64.0
 text = "Join"
 
 [node name="MenuBar2" type="MenuBar" parent="Tree"]
+layout_mode = 0
 offset_top = 75.0
 offset_right = 718.0
 offset_bottom = 144.0
@@ -80,6 +82,7 @@ theme_override_font_sizes/font_size = 40
 text = "  Server 2"
 
 [node name="Server2Count" type="Label" parent="Tree/MenuBar2"]
+layout_mode = 0
 offset_left = 438.0
 offset_top = 2.0
 offset_right = 512.0
@@ -96,6 +99,7 @@ offset_bottom = 64.0
 text = "Join"
 
 [node name="MenuBar3" type="MenuBar" parent="Tree"]
+layout_mode = 0
 offset_top = 150.0
 offset_right = 718.0
 offset_bottom = 219.0
@@ -108,6 +112,7 @@ theme_override_font_sizes/font_size = 40
 text = "  Server 3"
 
 [node name="Server3Count" type="Label" parent="Tree/MenuBar3"]
+layout_mode = 0
 offset_left = 438.0
 offset_top = 2.0
 offset_right = 512.0
@@ -124,6 +129,7 @@ offset_bottom = 64.0
 text = "Join"
 
 [node name="MenuBar4" type="MenuBar" parent="Tree"]
+layout_mode = 0
 offset_top = 225.0
 offset_right = 718.0
 offset_bottom = 294.0
@@ -136,6 +142,7 @@ theme_override_font_sizes/font_size = 40
 text = "  Server 4"
 
 [node name="Server4Count" type="Label" parent="Tree/MenuBar4"]
+layout_mode = 0
 offset_left = 438.0
 offset_top = 2.0
 offset_right = 512.0
@@ -152,6 +159,7 @@ offset_bottom = 64.0
 text = "Join"
 
 [node name="MenuBar5" type="MenuBar" parent="Tree"]
+layout_mode = 0
 offset_top = 300.0
 offset_right = 718.0
 offset_bottom = 369.0
@@ -164,6 +172,7 @@ theme_override_font_sizes/font_size = 40
 text = "  Server 5"
 
 [node name="Server5Count" type="Label" parent="Tree/MenuBar5"]
+layout_mode = 0
 offset_left = 438.0
 offset_top = 2.0
 offset_right = 512.0
