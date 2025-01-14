@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://y1q4tb4y1f64"]
 
-[ext_resource type="Script" uid="uid://c8yy2i7e3giiw" path="res://Scripts/server_menu.gd" id="1_qjr6u"]
+[ext_resource type="Script" path="res://Scripts/server_menu.gd" id="1_qjr6u"]
 
 [node name="Server Menu" type="Control"]
 layout_mode = 3
@@ -69,6 +69,7 @@ offset_bottom = 64.0
 text = "Join"
 
 [node name="MenuBar2" type="MenuBar" parent="Tree"]
+visible = false
 layout_mode = 0
 offset_top = 75.0
 offset_right = 718.0
@@ -99,6 +100,7 @@ offset_bottom = 64.0
 text = "Join"
 
 [node name="MenuBar3" type="MenuBar" parent="Tree"]
+visible = false
 layout_mode = 0
 offset_top = 150.0
 offset_right = 718.0
@@ -129,6 +131,7 @@ offset_bottom = 64.0
 text = "Join"
 
 [node name="MenuBar4" type="MenuBar" parent="Tree"]
+visible = false
 layout_mode = 0
 offset_top = 225.0
 offset_right = 718.0
@@ -159,6 +162,7 @@ offset_bottom = 64.0
 text = "Join"
 
 [node name="MenuBar5" type="MenuBar" parent="Tree"]
+visible = false
 layout_mode = 0
 offset_top = 300.0
 offset_right = 718.0
@@ -203,4 +207,5 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "Main Menu"
 
+[connection signal="pressed" from="Tree/MenuBar1/JoinServer1" to="." method="_on_join_server_1_pressed"]
 [connection signal="pressed" from="Main Menu" to="." method="_on_main_menu_pressed"]

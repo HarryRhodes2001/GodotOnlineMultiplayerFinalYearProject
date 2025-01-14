@@ -1,9 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://cdsrbu2iw8q40"]
+[gd_scene load_steps=7 format=3 uid="uid://cdsrbu2iw8q40"]
 
 [ext_resource type="PackedScene" uid="uid://b6f65ooxn5rv1" path="res://Meshes/map.tscn" id="1_5frdm"]
-[ext_resource type="Script" uid="uid://be8uu27aqd6ta" path="res://Scripts/game_manager.gd" id="1_cw6t4"]
+[ext_resource type="Script" path="res://Scripts/game_manager.gd" id="1_cw6t4"]
 [ext_resource type="PackedScene" uid="uid://ct1q2dd6pe7st" path="res://Scenes/gui.tscn" id="1_kr4it"]
-[ext_resource type="PackedScene" uid="uid://1sl60acptbbb" path="res://Meshes/player.tscn" id="2_c3yix"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_jblrn"]
 sky_horizon_color = Color(0.64625, 0.65575, 0.67075, 1)
@@ -32,5 +31,6 @@ environment = SubResource("Environment_1k8q6")
 
 [node name="map" parent="." instance=ExtResource("1_5frdm")]
 
-[node name="CharacterBody3D" parent="." instance=ExtResource("2_c3yix")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.75379, 35.5979)
+[node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
+_spawnable_scenes = PackedStringArray("res://Meshes/player.tscn")
+spawn_path = NodePath("..")

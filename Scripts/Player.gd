@@ -21,11 +21,9 @@ var ammunition = 20
 const ammunitionLimit = 20
 var kills = 0
 var deaths = 0
-var authority = 0
 
 func _enter_tree():
-	authority = multiplayer.get_unique_id()
-	set_multiplayer_authority(authority)
+	set_multiplayer_authority(str(name).to_int())
 
 func _ready():
 	if not is_multiplayer_authority(): return
@@ -56,7 +54,7 @@ func _unhandled_input(event):
 			if hit != null and hit.has_method("damage_received"):
 				if hit.damage_received():
 					kills += 1
-					killed_player.emit(authority, kills)
+					killed_player.emit(name, kills)
 	
 	# If the player presses the R key, then reload the weapon
 	if Input.is_action_just_pressed("reload") and player.current_animation != "Reload" and ammunition < ammunitionLimit:
@@ -70,18 +68,12 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 
 	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor() and authority == 1:
-		velocity.y = JUMP_VELOCITY
-	elif Input.is_physical_key_pressed(KEY_J) and is_on_floor() and authority == 2:
+	if Input.is_action_just_pressed("jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var input_dir
-	if authority == 1:
-		input_dir = Input.get_vector("left", "right", "up", "down")
-	elif authority == 2:
-		input_dir = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	var input_dir = Input.get_vector("left", "right", "up", "down")
 	var direction = (head.transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	if direction:
 		velocity.x = direction.x * SPEED
@@ -107,12 +99,9 @@ func damage_received() -> bool:
 	if health <= 0:
 		deaths += 1
 		health = 100
-		if authority == 1:
-			global_position = Vector3(0, 2.754, 35.598)
-		elif authority == 2:
-			global_position = Vector3(0, 2.754, -35.47)
+		global_position = Vector3(0, 2.754, 35.598)
 		health_changed.emit(health)
-		died.emit(authority, deaths)
+		died.emit(name, deaths)
 		return true
 	else:
 		return false
