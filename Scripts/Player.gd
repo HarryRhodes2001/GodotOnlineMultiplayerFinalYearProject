@@ -2,8 +2,7 @@ extends CharacterBody3D
 
 signal health_changed(health)
 signal ammo_changed(ammunition)
-signal killed_player(authority, kills)
-signal died(authority, deaths)
+signal died(name, deaths, att_name)
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
@@ -31,7 +30,7 @@ func _ready():
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	camera.current = true
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if not is_multiplayer_authority(): return
 	
 	if ammunition == 0:
@@ -52,9 +51,7 @@ func _unhandled_input(event):
 		if raycast.is_colliding():
 			var hit = raycast.get_collider()
 			if hit != null and hit.has_method("damage_received"):
-				if hit.damage_received():
-					kills += 1
-					killed_player.emit(name, kills)
+				hit.damage_received.rpc_id(hit.get_multiplayer_authority(), name)
 	
 	# If the player presses the R key, then reload the weapon
 	if Input.is_action_just_pressed("reload") and player.current_animation != "Reload" and ammunition < ammunitionLimit:
@@ -90,10 +87,10 @@ func _physics_process(delta: float) -> void:
 		player.play("Moving")
 	else:
 		player.play("Idle")
-
 	move_and_slide()
 
-func damage_received() -> bool:
+@rpc("any_peer")
+func damage_received(att_name):
 	health -= 10
 	health_changed.emit(health)
 	if health <= 0:
@@ -101,10 +98,7 @@ func damage_received() -> bool:
 		health = 100
 		global_position = Vector3(0, 2.754, 35.598)
 		health_changed.emit(health)
-		died.emit(name, deaths)
-		return true
-	else:
-		return false
+		died.emit(name, deaths, att_name)
 
 func firing_effects():
 	player.stop()

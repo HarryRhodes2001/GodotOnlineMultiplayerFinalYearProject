@@ -11,10 +11,6 @@ func _ready() -> void:
 		multiplayer.peer_disconnected.connect(_on_peer_disconnected)
 	_on_peer_connected(multiplayer.get_unique_id())
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
-
 func add_player(id):
 	print("Adding player with ID:", id)
 	var player = PlayerMesh.instantiate()
@@ -25,11 +21,11 @@ func add_player(id):
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	player.health_changed.connect(update_health)
 	player.ammo_changed.connect(update_ammo)
-	player.killed_player.connect(update_kills)
 	player.died.connect(update_deaths)
 
 func _on_peer_connected(peer_id: int):
 		print("Peer connected:", peer_id)
+		GUI.on_join(peer_id)
 		add_player(peer_id)
 
 func _on_peer_disconnected(peer_id: int):
@@ -44,8 +40,9 @@ func update_health(health):
 func update_ammo(ammo):
 	GUI.ammoUpdate(ammo)
 
-func update_kills(authority, kills):
-	GUI.killsUpdate(authority, kills)
-
-func update_deaths(authority, deaths):
-	GUI.deathsUpdate(authority, deaths)
+func update_deaths(playerName, deaths, att_name):
+	var att_kills
+	var attacker = get_node_or_null(str(att_name))
+	attacker.kills += 1  # Assuming `kills` is a property of the player object
+	att_kills = attacker.kills
+	GUI.deathsUpdate(playerName, deaths, att_name, att_kills)

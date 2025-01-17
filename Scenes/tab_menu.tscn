@@ -1,6 +1,44 @@
-[gd_scene load_steps=2 format=3 uid="uid://crrroystwuob4"]
+[gd_scene load_steps=3 format=3 uid="uid://crrroystwuob4"]
 
-[ext_resource type="Script" uid="uid://bg7ywis5583dc" path="res://Scripts/tab_menu.gd" id="1_tj5ki"]
+[ext_resource type="Script" path="res://Scripts/tab_menu.gd" id="1_tj5ki"]
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_nyjjk"]
+properties/0/path = NodePath("VBoxContainer/GridContainer/PlayerName1:text")
+properties/0/spawn = true
+properties/0/replication_mode = 1
+properties/1/path = NodePath("VBoxContainer/GridContainer/PlayerKills1:text")
+properties/1/spawn = true
+properties/1/replication_mode = 1
+properties/2/path = NodePath("VBoxContainer/GridContainer/PlayerDeaths1:text")
+properties/2/spawn = true
+properties/2/replication_mode = 1
+properties/3/path = NodePath("VBoxContainer/GridContainer/PlayerName2:text")
+properties/3/spawn = true
+properties/3/replication_mode = 1
+properties/4/path = NodePath("VBoxContainer/GridContainer/PlayerKills2:text")
+properties/4/spawn = true
+properties/4/replication_mode = 1
+properties/5/path = NodePath("VBoxContainer/GridContainer/PlayerDeaths2:text")
+properties/5/spawn = true
+properties/5/replication_mode = 1
+properties/6/path = NodePath("VBoxContainer/GridContainer/PlayerName1:visible")
+properties/6/spawn = true
+properties/6/replication_mode = 1
+properties/7/path = NodePath("VBoxContainer/GridContainer/PlayerKills1:visible")
+properties/7/spawn = true
+properties/7/replication_mode = 1
+properties/8/path = NodePath("VBoxContainer/GridContainer/PlayerDeaths1:visible")
+properties/8/spawn = true
+properties/8/replication_mode = 1
+properties/9/path = NodePath("VBoxContainer/GridContainer/PlayerName2:visible")
+properties/9/spawn = true
+properties/9/replication_mode = 1
+properties/10/path = NodePath("VBoxContainer/GridContainer/PlayerKills2:visible")
+properties/10/spawn = true
+properties/10/replication_mode = 1
+properties/11/path = NodePath("VBoxContainer/GridContainer/PlayerDeaths2:visible")
+properties/11/spawn = true
+properties/11/replication_mode = 1
 
 [node name="Tab Menu" type="Control"]
 layout_mode = 3
@@ -63,25 +101,34 @@ layout_mode = 2
 text = "Deaths          "
 
 [node name="PlayerName1" type="Label" parent="VBoxContainer/GridContainer"]
+visible = false
 layout_mode = 2
 text = "                     Player"
 
 [node name="PlayerKills1" type="Label" parent="VBoxContainer/GridContainer"]
+visible = false
 layout_mode = 2
 text = "0"
 
 [node name="PlayerDeaths1" type="Label" parent="VBoxContainer/GridContainer"]
+visible = false
 layout_mode = 2
 text = "0"
 
 [node name="PlayerName2" type="Label" parent="VBoxContainer/GridContainer"]
+visible = false
 layout_mode = 2
 text = "                     Player2"
 
 [node name="PlayerKills2" type="Label" parent="VBoxContainer/GridContainer"]
+visible = false
 layout_mode = 2
 text = "0"
 
 [node name="PlayerDeaths2" type="Label" parent="VBoxContainer/GridContainer"]
+visible = false
 layout_mode = 2
 text = "0"
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_nyjjk")
