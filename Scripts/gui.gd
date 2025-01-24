@@ -6,6 +6,11 @@ extends CanvasLayer
 @onready var pingLabel = $PingLabel
 @onready var strength = $StrengthLabel
 
+# GUI handles the GUI instances for each and every player
+# These functions are called only from the game manager script
+# These update the ammunition, health and ping of the player
+# For the tab leaderboard, it calls the tab script
+
 func healthUpdate(health):
 	healthBar.value = health
 
@@ -17,6 +22,9 @@ func deathsUpdate(playerName, deaths, att_name, att_kills):
 
 func on_join(playerName):
 	tab.on_join(playerName)
+
+func on_leave(playerName):
+	tab.on_leave(playerName)
 
 func pingUpdate(time):
 	var ping = Time.get_ticks_msec() - time

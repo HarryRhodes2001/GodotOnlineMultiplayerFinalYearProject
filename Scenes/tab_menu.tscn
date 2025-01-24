@@ -39,6 +39,114 @@ properties/10/replication_mode = 1
 properties/11/path = NodePath("VBoxContainer/GridContainer/PlayerDeaths2:visible")
 properties/11/spawn = true
 properties/11/replication_mode = 1
+properties/12/path = NodePath("VBoxContainer/GridContainer/PlayerName3:text")
+properties/12/spawn = true
+properties/12/replication_mode = 1
+properties/13/path = NodePath("VBoxContainer/GridContainer/PlayerName3:visible")
+properties/13/spawn = true
+properties/13/replication_mode = 1
+properties/14/path = NodePath("VBoxContainer/GridContainer/PlayerKills3:text")
+properties/14/spawn = true
+properties/14/replication_mode = 1
+properties/15/path = NodePath("VBoxContainer/GridContainer/PlayerKills3:visible")
+properties/15/spawn = true
+properties/15/replication_mode = 1
+properties/16/path = NodePath("VBoxContainer/GridContainer/PlayerDeaths3:text")
+properties/16/spawn = true
+properties/16/replication_mode = 1
+properties/17/path = NodePath("VBoxContainer/GridContainer/PlayerDeaths3:visible")
+properties/17/spawn = true
+properties/17/replication_mode = 1
+properties/18/path = NodePath("VBoxContainer/GridContainer/PlayerName4:text")
+properties/18/spawn = true
+properties/18/replication_mode = 1
+properties/19/path = NodePath("VBoxContainer/GridContainer/PlayerName4:visible")
+properties/19/spawn = true
+properties/19/replication_mode = 1
+properties/20/path = NodePath("VBoxContainer/GridContainer/PlayerKills4:text")
+properties/20/spawn = true
+properties/20/replication_mode = 1
+properties/21/path = NodePath("VBoxContainer/GridContainer/PlayerDeaths4:text")
+properties/21/spawn = true
+properties/21/replication_mode = 1
+properties/22/path = NodePath("VBoxContainer/GridContainer/PlayerName5:text")
+properties/22/spawn = true
+properties/22/replication_mode = 1
+properties/23/path = NodePath("VBoxContainer/GridContainer/PlayerKills5:text")
+properties/23/spawn = true
+properties/23/replication_mode = 1
+properties/24/path = NodePath("VBoxContainer/GridContainer/PlayerDeaths5:text")
+properties/24/spawn = true
+properties/24/replication_mode = 1
+properties/25/path = NodePath("VBoxContainer/GridContainer/PlayerName6:text")
+properties/25/spawn = true
+properties/25/replication_mode = 1
+properties/26/path = NodePath("VBoxContainer/GridContainer/PlayerKills6:text")
+properties/26/spawn = true
+properties/26/replication_mode = 1
+properties/27/path = NodePath("VBoxContainer/GridContainer/PlayerDeaths6:text")
+properties/27/spawn = true
+properties/27/replication_mode = 1
+properties/28/path = NodePath("VBoxContainer/GridContainer/PlayerName7:text")
+properties/28/spawn = true
+properties/28/replication_mode = 1
+properties/29/path = NodePath("VBoxContainer/GridContainer/PlayerKills7:text")
+properties/29/spawn = true
+properties/29/replication_mode = 1
+properties/30/path = NodePath("VBoxContainer/GridContainer/PlayerDeaths7:text")
+properties/30/spawn = true
+properties/30/replication_mode = 1
+properties/31/path = NodePath("VBoxContainer/GridContainer/PlayerName8:text")
+properties/31/spawn = true
+properties/31/replication_mode = 1
+properties/32/path = NodePath("VBoxContainer/GridContainer/PlayerKills8:text")
+properties/32/spawn = true
+properties/32/replication_mode = 1
+properties/33/path = NodePath("VBoxContainer/GridContainer/PlayerDeaths8:text")
+properties/33/spawn = true
+properties/33/replication_mode = 1
+properties/34/path = NodePath("VBoxContainer/GridContainer/PlayerKills4:visible")
+properties/34/spawn = true
+properties/34/replication_mode = 1
+properties/35/path = NodePath("VBoxContainer/GridContainer/PlayerDeaths4:visible")
+properties/35/spawn = true
+properties/35/replication_mode = 1
+properties/36/path = NodePath("VBoxContainer/GridContainer/PlayerName5:visible")
+properties/36/spawn = true
+properties/36/replication_mode = 1
+properties/37/path = NodePath("VBoxContainer/GridContainer/PlayerKills5:visible")
+properties/37/spawn = true
+properties/37/replication_mode = 1
+properties/38/path = NodePath("VBoxContainer/GridContainer/PlayerDeaths5:visible")
+properties/38/spawn = true
+properties/38/replication_mode = 1
+properties/39/path = NodePath("VBoxContainer/GridContainer/PlayerName6:visible")
+properties/39/spawn = true
+properties/39/replication_mode = 1
+properties/40/path = NodePath("VBoxContainer/GridContainer/PlayerKills6:visible")
+properties/40/spawn = true
+properties/40/replication_mode = 1
+properties/41/path = NodePath("VBoxContainer/GridContainer/PlayerDeaths6:visible")
+properties/41/spawn = true
+properties/41/replication_mode = 1
+properties/42/path = NodePath("VBoxContainer/GridContainer/PlayerName7:visible")
+properties/42/spawn = true
+properties/42/replication_mode = 1
+properties/43/path = NodePath("VBoxContainer/GridContainer/PlayerKills7:visible")
+properties/43/spawn = true
+properties/43/replication_mode = 1
+properties/44/path = NodePath("VBoxContainer/GridContainer/PlayerDeaths7:visible")
+properties/44/spawn = true
+properties/44/replication_mode = 1
+properties/45/path = NodePath("VBoxContainer/GridContainer/PlayerName8:visible")
+properties/45/spawn = true
+properties/45/replication_mode = 1
+properties/46/path = NodePath("VBoxContainer/GridContainer/PlayerKills8:visible")
+properties/46/spawn = true
+properties/46/replication_mode = 1
+properties/47/path = NodePath("VBoxContainer/GridContainer/PlayerDeaths8:visible")
+properties/47/spawn = true
+properties/47/replication_mode = 1
 
 [node name="Tab Menu" type="Control"]
 layout_mode = 3
@@ -141,6 +249,81 @@ layout_mode = 2
 text = "0"
 
 [node name="PlayerDeaths3" type="Label" parent="VBoxContainer/GridContainer"]
+visible = false
+layout_mode = 2
+text = "0"
+
+[node name="PlayerName4" type="Label" parent="VBoxContainer/GridContainer"]
+visible = false
+layout_mode = 2
+text = "                     Player4"
+
+[node name="PlayerKills4" type="Label" parent="VBoxContainer/GridContainer"]
+visible = false
+layout_mode = 2
+text = "0"
+
+[node name="PlayerDeaths4" type="Label" parent="VBoxContainer/GridContainer"]
+visible = false
+layout_mode = 2
+text = "0"
+
+[node name="PlayerName5" type="Label" parent="VBoxContainer/GridContainer"]
+visible = false
+layout_mode = 2
+text = "                     Player5"
+
+[node name="PlayerKills5" type="Label" parent="VBoxContainer/GridContainer"]
+visible = false
+layout_mode = 2
+text = "0"
+
+[node name="PlayerDeaths5" type="Label" parent="VBoxContainer/GridContainer"]
+visible = false
+layout_mode = 2
+text = "0"
+
+[node name="PlayerName6" type="Label" parent="VBoxContainer/GridContainer"]
+visible = false
+layout_mode = 2
+text = "                     Player6"
+
+[node name="PlayerKills6" type="Label" parent="VBoxContainer/GridContainer"]
+visible = false
+layout_mode = 2
+text = "0"
+
+[node name="PlayerDeaths6" type="Label" parent="VBoxContainer/GridContainer"]
+visible = false
+layout_mode = 2
+text = "0"
+
+[node name="PlayerName7" type="Label" parent="VBoxContainer/GridContainer"]
+visible = false
+layout_mode = 2
+text = "                     Player7"
+
+[node name="PlayerKills7" type="Label" parent="VBoxContainer/GridContainer"]
+visible = false
+layout_mode = 2
+text = "0"
+
+[node name="PlayerDeaths7" type="Label" parent="VBoxContainer/GridContainer"]
+visible = false
+layout_mode = 2
+text = "0"
+
+[node name="PlayerName8" type="Label" parent="VBoxContainer/GridContainer"]
+visible = false
+layout_mode = 2
+text = "                     Player8"
+
+[node name="PlayerKills8" type="Label" parent="VBoxContainer/GridContainer"]
+visible = false
+layout_mode = 2
+text = "0"
+
+[node name="PlayerDeaths8" type="Label" parent="VBoxContainer/GridContainer"]
 visible = false
 layout_mode = 2
 text = "0"

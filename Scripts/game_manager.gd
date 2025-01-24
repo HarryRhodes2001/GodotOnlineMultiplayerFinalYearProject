@@ -21,6 +21,9 @@ func _ready() -> void:
 		multiplayer.server_disconnected.connect(_on_server_disconnected)
 	_on_peer_connected(multiplayer.get_unique_id())
 
+# Adds the player with the created unique multiplayer ID when the function is called
+# Also connects the signals emitted from the player to the server
+# Spawns in a random position predefined in SpawnPositions
 func add_player(id):
 	print("Adding player with ID:", id)
 	playerID = id
@@ -36,6 +39,8 @@ func add_player(id):
 	player.died.connect(update_deaths)
 	player.ping.connect(handle_ping_request)
 
+# Update the peerList for each player should they become the new host and need
+# to retrieve the last state
 func _on_peer_connected(peer_id: int):
 	peerList = multiplayer.get_peers()
 	update_lists.rpc(peerList)
@@ -43,12 +48,16 @@ func _on_peer_connected(peer_id: int):
 	GUI.on_join(peer_id)
 	add_player(peer_id)
 
+# Remove the disconnected player from the leaderboard and their player mesh from the world
 func _on_peer_disconnected(peer_id: int):
 	print("Peer disconnected:", peer_id)
+	GUI.on_leave(peer_id)
 	var player = get_node_or_null(str(peer_id))
 	if player:
 		player.queue_free()
 
+# If the server disconnects, elect a new host from the player list
+# Every peer will run this code, but only one will run the create server function
 func _on_server_disconnected():
 	print(peerList)
 	var new_host_id = 0

@@ -95,6 +95,7 @@ func _physics_process(delta: float) -> void:
 		player.play("Idle")
 	move_and_slide()
 
+# When damaged, remotely emit a signal to the server to change my GUI upon altering my health value
 @rpc("any_peer")
 func damage_received(att_name):
 	health -= 10
@@ -105,6 +106,7 @@ func damage_received(att_name):
 		health_changed.emit(health)
 		died.emit(name, deaths, att_name)
 
+# Call the firing effects on the local instances so that every player sees them
 @rpc("call_local")
 func firing_effects():
 	player.stop()
@@ -112,14 +114,17 @@ func firing_effects():
 	flash.restart()
 	flash.emitting = true
 
+# Allows any player to remotely request a ping from the server, this is called once every second
 @rpc("any_peer")
 func ping_request(player_id, time):
 	ping.emit(player_id, time)
 
+# Called when the player fires
 func deduct_ammo():
 	ammunition -= 1
 	ammo_changed.emit(ammunition)
 
+# When the player runs out of ammunition in their current magazine, or hits the 'R' key, reload
 func reload():
 	player.stop()
 	player.play("Reload")
