@@ -130,5 +130,20 @@ visible = false
 layout_mode = 2
 text = "0"
 
+[node name="PlayerName3" type="Label" parent="VBoxContainer/GridContainer"]
+visible = false
+layout_mode = 2
+text = "                     Player3"
+
+[node name="PlayerKills3" type="Label" parent="VBoxContainer/GridContainer"]
+visible = false
+layout_mode = 2
+text = "0"
+
+[node name="PlayerDeaths3" type="Label" parent="VBoxContainer/GridContainer"]
+visible = false
+layout_mode = 2
+text = "0"
+
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
 replication_config = SubResource("SceneReplicationConfig_nyjjk")

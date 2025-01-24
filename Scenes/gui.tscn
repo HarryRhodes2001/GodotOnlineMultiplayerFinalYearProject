@@ -19,6 +19,28 @@ visible = false
 [node name="Tab Menu" parent="." instance=ExtResource("3_3mrcu")]
 visible = false
 
+[node name="PingLabel" type="Label" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -152.0
+offset_top = 10.0
+offset_right = -1.0
+offset_bottom = 33.0
+grow_horizontal = 0
+text = "Ping: 0ms"
+
+[node name="StrengthLabel" type="Label" parent="."]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -152.0
+offset_top = 35.0
+offset_right = -2.0
+offset_bottom = 58.0
+grow_horizontal = 0
+text = "Strength: N/A"
+
 [node name="Health" type="ProgressBar" parent="."]
 light_mask = 2
 visibility_layer = 2

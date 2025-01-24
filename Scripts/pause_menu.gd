@@ -27,4 +27,7 @@ func _on_resume_pressed() -> void:
 
 #
 func _on_quit_pressed() -> void:
+	if multiplayer.multiplayer_peer:
+		multiplayer.multiplayer_peer = null
+		
 	get_tree().change_scene_to_file("res://Scenes/main_menu.tscn")

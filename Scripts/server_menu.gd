@@ -7,7 +7,6 @@ func _on_main_menu_pressed() -> void:
 # MultiplayerManager is a global script and will run no matter which level or
 # scene is currently being played.
 func _on_join_server_1_pressed() -> void:
-	MultiplayerManager.create_client("localhost")
 	if MultiplayerManager.create_client("localhost"):
 		get_tree().change_scene_to_file("res://Scenes/world.tscn")
 	else:

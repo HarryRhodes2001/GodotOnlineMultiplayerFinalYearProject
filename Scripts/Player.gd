@@ -3,6 +3,7 @@ extends CharacterBody3D
 signal health_changed(health)
 signal ammo_changed(ammunition)
 signal died(name, deaths, att_name)
+signal ping(player_id, time)
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 4.5
@@ -13,6 +14,7 @@ const SENSITIVITY = 0.003
 @onready var player = $AnimationPlayer
 @onready var flash = $Head/Camera3D/assault_rifle/Flash
 @onready var raycast = $Head/Camera3D/RayCast3D
+@onready var pingTimer = $PingTimer
 
 # Player Vars
 var health = 100
@@ -20,6 +22,9 @@ var ammunition = 20
 const ammunitionLimit = 20
 var kills = 0
 var deaths = 0
+
+# Ping Vars
+var current_time: float
 
 func _enter_tree():
 	set_multiplayer_authority(str(name).to_int())
@@ -47,7 +52,8 @@ func _unhandled_input(event):
 	# If the player presses the left mouse button, fire the weapon
 	# The current animation check is to prevent the animation overlaping and give a firing cooldown
 	if Input.is_action_just_pressed("fire") and player.current_animation != "Firing" and ammunition != 0 and player.current_animation != "Reload":
-		firing_effects()
+		firing_effects.rpc()
+		deduct_ammo()
 		if raycast.is_colliding():
 			var hit = raycast.get_collider()
 			if hit != null and hit.has_method("damage_received"):
@@ -96,20 +102,41 @@ func damage_received(att_name):
 	if health <= 0:
 		deaths += 1
 		health = 100
-		global_position = Vector3(0, 2.754, 35.598)
 		health_changed.emit(health)
 		died.emit(name, deaths, att_name)
 
+@rpc("call_local")
 func firing_effects():
 	player.stop()
 	player.play("Firing")
-	ammunition -= 1
-	ammo_changed.emit(ammunition)
 	flash.restart()
 	flash.emitting = true
+
+@rpc("any_peer")
+func ping_request(player_id, time):
+	ping.emit(player_id, time)
+
+func deduct_ammo():
+	ammunition -= 1
+	ammo_changed.emit(ammunition)
 
 func reload():
 	player.stop()
 	player.play("Reload")
 	ammunition = ammunitionLimit
 	ammo_changed.emit(ammunition)
+
+
+func _on_ping_timer_timeout() -> void:
+	# If I am the server, do not run this code
+	if name == "1":
+		pass
+	else:
+		# Run this in the world instance only!
+		if not is_multiplayer_authority():
+			return
+		
+		# Ask for the ping each second as to not overload the server with requests.
+		current_time = Time.get_ticks_msec()
+		ping_request.rpc(get_multiplayer_authority(), current_time)
+		print("Timer restarted: " + name)
