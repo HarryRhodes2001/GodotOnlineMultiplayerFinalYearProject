@@ -19,6 +19,8 @@ func on_join(playerName):
 	noOfPlayers += 1
 	print(noOfPlayers)
 	playerID.append([noOfPlayers, playerName])
+	sync_player_IDs.rpc(playerID)
+	print(playerID)
 	var nodeName = "PlayerName" + str(noOfPlayers)
 	var playerNode = $VBoxContainer/GridContainer.get_node(nodeName)
 	playerNode.visible = true
@@ -78,8 +80,10 @@ func on_leave(playerName):
 func set_deaths(playerName, deaths, att_name, kills):
 	var nodeName
 	if playerName == "1":
+		print("Server died")
 		nodeName = "PlayerDeaths" + str(1)
 	else:
+		print("Peer died")
 		var id = find_value(playerName)
 		nodeName = "PlayerDeaths" + str(id)
 	
@@ -102,4 +106,11 @@ func find_value(playerName):
 	for row in range(playerID.size()):
 			for col in range(playerID[row].size()):
 				if str(playerID[row][col]) == playerName:
+					print(playerID)
+					print(playerID[row][col])
+					print(playerID[row][col-1])
 					return playerID[row][col-1]
+
+@rpc ("any_peer")
+func sync_player_IDs(list):
+	playerID = list

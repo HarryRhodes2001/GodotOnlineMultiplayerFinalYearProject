@@ -26,6 +26,10 @@ var deaths = 0
 # Ping Vars
 var current_time: float
 
+# NOTICE: A fair amount of this code was taken from this tutorial: www.youtube.com/watch?v=n8D3vEx7NAE
+# This was helpful to connect emitting signals from the players whilst also using RPC functions
+# Some of the code in the tutorial is present in other scripts, the most relevant information starts at 24:53
+
 func _enter_tree():
 	set_multiplayer_authority(str(name).to_int())
 
@@ -144,4 +148,3 @@ func _on_ping_timer_timeout() -> void:
 		# Ask for the ping each second as to not overload the server with requests.
 		current_time = Time.get_ticks_msec()
 		ping_request.rpc(get_multiplayer_authority(), current_time)
-		print("Timer restarted: " + name)

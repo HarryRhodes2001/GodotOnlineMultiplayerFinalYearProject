@@ -11,6 +11,10 @@ var rng = RandomNumberGenerator.new()
 var playerID
 var peerList = []
 
+# NOTICE: A fair amount of this code was taken from this tutorial: www.youtube.com/watch?v=n8D3vEx7NAE
+# This was helpful to connect emitting signals from the players whilst also using RPC functions
+# Some of the code in the tutorial is present in other scripts, the most relevant information starts at 24:53
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if multiplayer.is_server():
@@ -81,6 +85,21 @@ func update_deaths(playerName, deaths, att_name):
 	var victim = get_node_or_null(str(playerName))
 	var randNum = rng.randf_range(0,8)
 	victim.position = SpawnPositions[randNum]
+	
+	# Peer on peer kills and server on peer kills need to be sent as an RPC function wheras
+	# peer on server kills need to be sent as a normal GUI function
+	# I'm not exactly sure why this is the case, but oh well
+	if att_name != "1":
+		if playerName != "1":
+			send_leaderboard_data.rpc(playerName, deaths, att_name, att_kills)
+		else:
+			GUI.deathsUpdate(playerName, deaths, att_name, att_kills)
+	else:
+		# Server runs
+		send_leaderboard_data.rpc(playerName, deaths, att_name, att_kills)
+
+@rpc("any_peer")
+func send_leaderboard_data(playerName, deaths, att_name, att_kills):
 	GUI.deathsUpdate(playerName, deaths, att_name, att_kills)
 
 func handle_ping_request(id, time):
