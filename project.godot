@@ -18,6 +18,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 MultiplayerManager="*res://Scripts/multiplayer_manager.gd"
+Noray="*res://addons/netfox.noray/noray.gd"
+PacketHandshake="*res://addons/netfox.noray/packet-handshake.gd"
 
 [display]
 
@@ -28,6 +30,10 @@ window/main_scene="res://Scenes/main_menu.tscn"
 [dotnet]
 
 project/assembly_name="GodotOnlineMultiplayerFinalYearProject"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/netfox.internals/plugin.cfg", "res://addons/netfox.noray/plugin.cfg")
 
 [input]
 

@@ -25,7 +25,37 @@ bbcode_enabled = true
 text = "[center]
 [font_size=40][color=#ffffff]Available Servers"
 
+[node name="ServerAddressInput" type="LineEdit" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -85.0
+offset_top = -13.0
+offset_right = 85.0
+offset_bottom = 18.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="JoinServer1" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = 54.0
+offset_right = 37.0
+offset_bottom = 111.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Join"
+
 [node name="Tree" type="Tree" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -59,14 +89,6 @@ offset_right = 512.0
 offset_bottom = 62.0
 theme_override_font_sizes/font_size = 40
 text = "0/8"
-
-[node name="JoinServer1" type="Button" parent="Tree/MenuBar1"]
-layout_mode = 0
-offset_left = 640.0
-offset_top = 7.0
-offset_right = 713.0
-offset_bottom = 64.0
-text = "Join"
 
 [node name="MenuBar2" type="MenuBar" parent="Tree"]
 visible = false
@@ -207,5 +229,5 @@ grow_horizontal = 2
 grow_vertical = 0
 text = "Main Menu"
 
-[connection signal="pressed" from="Tree/MenuBar1/JoinServer1" to="." method="_on_join_server_1_pressed"]
+[connection signal="pressed" from="JoinServer1" to="." method="_on_join_server_1_pressed"]
 [connection signal="pressed" from="Main Menu" to="." method="_on_main_menu_pressed"]

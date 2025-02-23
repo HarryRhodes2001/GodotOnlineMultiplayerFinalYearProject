@@ -1,5 +1,11 @@
 extends Control
 
+@onready var addresslabel = $AddressLabel
+
+func _ready():
+	await MultiplayerManager.noray_connected
+	addresslabel.text = Noray.oid
+
 func _on_quit_pressed() -> void:
 	get_tree().quit()
 
@@ -18,3 +24,7 @@ func _on_peerto_peer_pressed() -> void:
 
 func _on_join_game_pressed() -> void:
 	get_tree().change_scene_to_file("res://Scenes/server_menu.tscn")
+
+
+func _on_copy_address_pressed() -> void:
+	DisplayServer.clipboard_set(Noray.oid)

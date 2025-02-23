@@ -40,6 +40,22 @@ offset_bottom = -5.0
 grow_vertical = 0
 text = "Release V1.1"
 
+[node name="AddressLabel" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -244.0
+offset_top = -28.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "Address Loading..."
+horizontal_alignment = 2
+
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 7
@@ -64,6 +80,10 @@ layout_mode = 2
 disabled = true
 text = "Host Peer-to-Peer Game"
 
+[node name="Copy Address" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Copy Host Address (Client-Server)"
+
 [node name="Join Game" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Join Game"
@@ -74,5 +94,6 @@ text = "Quit"
 
 [connection signal="pressed" from="VBoxContainer/Client-Server" to="." method="_on_client_server_pressed"]
 [connection signal="pressed" from="VBoxContainer/Peer-to-Peer" to="." method="_on_peerto_peer_pressed"]
+[connection signal="pressed" from="VBoxContainer/Copy Address" to="." method="_on_copy_address_pressed"]
 [connection signal="pressed" from="VBoxContainer/Join Game" to="." method="_on_join_game_pressed"]
 [connection signal="pressed" from="VBoxContainer/Quit" to="." method="_on_quit_pressed"]
