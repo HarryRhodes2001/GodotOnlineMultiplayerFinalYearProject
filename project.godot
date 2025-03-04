@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 MultiplayerManager="*res://Scripts/multiplayer_manager.gd"
 Noray="*res://addons/netfox.noray/noray.gd"
 PacketHandshake="*res://addons/netfox.noray/packet-handshake.gd"
+BitPacking="*res://Scripts/bit_packing.gd"
 
 [display]
 

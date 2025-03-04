@@ -38,6 +38,7 @@ func _ready():
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	camera.current = true
+	BitPacking.compress(13)
 
 func _process(_delta: float) -> void:
 	if not is_multiplayer_authority(): return
