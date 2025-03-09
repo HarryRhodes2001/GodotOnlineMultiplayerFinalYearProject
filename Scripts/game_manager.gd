@@ -77,7 +77,13 @@ func update_health(health):
 func update_ammo(ammo):
 	GUI.ammoUpdate(ammo)
 
-func update_deaths(playerName, deaths, att_name):
+func update_deaths(packet):
+	var data = BitPacking.decompress(packet)
+	var playerName = data[0]
+	var deaths = data[1]
+	var att_name = data[2]
+	
+	
 	var att_kills
 	var attacker = get_node_or_null(str(att_name))
 	attacker.kills += 1

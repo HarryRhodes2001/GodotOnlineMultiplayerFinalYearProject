@@ -2,7 +2,8 @@ extends CharacterBody3D
 
 signal health_changed(health)
 signal ammo_changed(ammunition)
-signal died(name, deaths, att_name)
+#signal died(name, deaths, att_name)
+signal died(packet)
 signal ping(player_id, time)
 
 const SPEED = 5.0
@@ -38,8 +39,9 @@ func _ready():
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	camera.current = true
-	var packet = [&"2064989074"]
-	BitPacking.compress(packet)
+	var packet = [name, 1, "24061067"]
+	var compressedPacket = BitPacking.compress(packet)
+	BitPacking.decompress(compressedPacket)
 
 func _process(_delta: float) -> void:
 	if not is_multiplayer_authority(): return
@@ -104,18 +106,16 @@ func _physics_process(delta: float) -> void:
 # When damaged, remotely emit a signal to the server to change my GUI upon altering my health value
 @rpc("any_peer")
 func damage_received(att_name):
-	print("Value: ", att_name)
-	print("Array: ", [att_name])
-	print("Size: ", var_to_bytes(att_name).size())
-	BitPacking.compress([att_name])
-	
 	health -= 10
 	health_changed.emit(health)
 	if health <= 0:
 		deaths += 1
 		health = 100
 		health_changed.emit(health)
-		died.emit(name, deaths, att_name)
+		var packet = [name, deaths, att_name]
+		BitPacking.compress(packet)
+		died.emit(packet)
+		#died.emit(name, deaths, att_name)
 
 # Call the firing effects on the local instances so that every player sees them
 @rpc("call_local")
