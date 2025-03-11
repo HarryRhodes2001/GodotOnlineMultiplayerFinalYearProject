@@ -83,7 +83,6 @@ func update_deaths(packet):
 	var deaths = data[1]
 	var att_name = data[2]
 	
-	
 	var att_kills
 	var attacker = get_node_or_null(str(att_name))
 	attacker.kills += 1

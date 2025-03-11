@@ -2,7 +2,6 @@ extends CharacterBody3D
 
 signal health_changed(health)
 signal ammo_changed(ammunition)
-#signal died(name, deaths, att_name)
 signal died(packet)
 signal ping(player_id, time)
 
@@ -113,9 +112,8 @@ func damage_received(att_name):
 		health = 100
 		health_changed.emit(health)
 		var packet = [name, deaths, att_name]
-		BitPacking.compress(packet)
-		died.emit(packet)
-		#died.emit(name, deaths, att_name)
+		var compressedPacket = BitPacking.compress(packet)
+		died.emit(compressedPacket)
 
 # Call the firing effects on the local instances so that every player sees them
 @rpc("call_local")
