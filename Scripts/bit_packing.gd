@@ -26,8 +26,14 @@ func compress(data):
 	
 	for value in data:
 		var type = typeof(value)
+		print(value)
 		if typeof(value) == TYPE_STRING or typeof(value) == TYPE_STRING_NAME:
 			value = value.to_int()
+		# The bit packing algorithm cannot convert floats, so I have to convert it to an interger
+		# Unfortunately, due to time constraints, I don't have time to look for a workaround
+		elif typeof(value) == TYPE_FLOAT:
+			value = int(value)
+			type = 2
 		
 		var result = convert_to_bits(value, (var_to_bytes(value).size() * 8))
 		var bitValue = result[0]

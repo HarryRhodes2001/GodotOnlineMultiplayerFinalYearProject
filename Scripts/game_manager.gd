@@ -71,10 +71,14 @@ func _on_server_disconnected():
 	if playerID == new_host_id:
 		MultiplayerManager.create_server()
 
-func update_health(health):
+func update_health(packet):
+	var data = BitPacking.decompress(packet)
+	var health = data[0]
 	GUI.healthUpdate(health)
 
-func update_ammo(ammo):
+func update_ammo(packet):
+	var data = BitPacking.decompress(packet)
+	var ammo = data[0]
 	GUI.ammoUpdate(ammo)
 
 func update_deaths(packet):
@@ -108,6 +112,9 @@ func send_leaderboard_data(playerName, deaths, att_name, att_kills):
 	GUI.deathsUpdate(playerName, deaths, att_name, att_kills)
 
 func handle_ping_request(id, time):
+	#var data = BitPacking.decompress(packet)
+	#var id = data[0]
+	#var time = data[1]
 	ping_print.rpc_id(id, time)
 
 @rpc("authority")

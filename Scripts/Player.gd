@@ -1,7 +1,7 @@
 extends CharacterBody3D
 
-signal health_changed(health)
-signal ammo_changed(ammunition)
+signal health_changed(packet)
+signal ammo_changed(packet)
 signal died(packet)
 signal ping(player_id, time)
 
@@ -106,14 +106,19 @@ func _physics_process(delta: float) -> void:
 @rpc("any_peer")
 func damage_received(att_name):
 	health -= 10
-	health_changed.emit(health)
-	if health <= 0:
+	if health > 0:
+		var packet = [health]
+		var compressedPacket = BitPacking.compress(packet)
+		health_changed.emit(compressedPacket)
+	elif health <= 0:
 		deaths += 1
 		health = 100
-		health_changed.emit(health)
-		var packet = [name, deaths, att_name]
-		var compressedPacket = BitPacking.compress(packet)
-		died.emit(compressedPacket)
+		var packet1 = [health]
+		var compressedPacket1 = BitPacking.compress(packet1)
+		health_changed.emit(compressedPacket1)
+		var packet2 = [name, deaths, att_name]
+		var compressedPacket2 = BitPacking.compress(packet2)
+		died.emit(compressedPacket2)
 
 # Call the firing effects on the local instances so that every player sees them
 @rpc("call_local")
@@ -126,19 +131,25 @@ func firing_effects():
 # Allows any player to remotely request a ping from the server, this is called once every second
 @rpc("any_peer")
 func ping_request(player_id, time):
+	#var packet = [player_id, time]
+	#var compressedPacket = BitPacking.compress(packet)
 	ping.emit(player_id, time)
 
 # Called when the player fires
 func deduct_ammo():
 	ammunition -= 1
-	ammo_changed.emit(ammunition)
+	var packet = [ammunition]
+	var compressedPacket = BitPacking.compress(packet)
+	ammo_changed.emit(compressedPacket)
 
 # When the player runs out of ammunition in their current magazine, or hits the 'R' key, reload
 func reload():
 	player.stop()
 	player.play("Reload")
 	ammunition = ammunitionLimit
-	ammo_changed.emit(ammunition)
+	var packet = [ammunition]
+	var compressedPacket = BitPacking.compress(packet)
+	ammo_changed.emit(compressedPacket)
 
 
 func _on_ping_timer_timeout() -> void:
