@@ -38,9 +38,6 @@ func _ready():
 	
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	camera.current = true
-	var packet = [name, 1, "24061067"]
-	var compressedPacket = BitPacking.compress(packet)
-	BitPacking.decompress(compressedPacket)
 
 func _process(_delta: float) -> void:
 	if not is_multiplayer_authority(): return

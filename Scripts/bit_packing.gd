@@ -69,8 +69,11 @@ func decompress(compressedPacket: Array):
 	var types = chunk.types
 	print(string, bits, types)
 	
+	var offset = 0
+	
 	for i in range(bits.size()):
-		var value = string.substr(i, bits[i])
+		var value = string.substr(offset, bits[i])
+		offset += bits[i]
 		var decompressed_value = convert_to_variable(value, types[i])
 		decompressed_data.append(decompressed_value)
 	
